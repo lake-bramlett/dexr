@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
+import Contacts from 'react-native-contacts';
 import User from './components/User';
+import ContactsList from './components/ContactsList';
+
 
 class App extends Component {
+
   render() {
     return (
       <AppContainer />
@@ -14,23 +18,9 @@ class App extends Component {
 
 export default App;
 
-class WelcomeScreen extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Welcome</Text>
-      </View>
-    )
-  }
-}
-
-const AppSwitchNavigator = createSwitchNavigator({
-  Welcome: {screen: WelcomeScreen}
-})
-
 const TabNavigator = createBottomTabNavigator({
-  Welcome: WelcomeScreen,
-  User: User
+  User: User,
+  Contacts: ContactsList,
 })
 
 const AppContainer = createAppContainer(TabNavigator);

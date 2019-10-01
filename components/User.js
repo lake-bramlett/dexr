@@ -4,8 +4,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 function User() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Button onPress={() => this.props.navigation.navigate('User')} title="go to user"></Button>
+      <Text>User</Text>
     </View>
   );
 }
@@ -13,7 +12,7 @@ function User() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#333',
     alignItems: 'center',
     justifyContent: 'center',
   },
