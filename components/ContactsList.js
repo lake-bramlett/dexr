@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
+import { connect } from "react-redux";
 
-function ContactsList(props) {
+class ContactsList extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
     return (
       <View style={styles.container}>
-          <Text>{this.props.contacts[0].name}</Text>
-          <Text>{this.props.contacts[0].number}</Text>
+        <Text>Contacts List</Text>
+        <Text>{this.props.contacts}</Text>
       </View>
     );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -19,4 +26,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ContactsList;
+const mapStateToProps = state => {
+  return { contacts: state.contacts };
+};
+
+export default connect(mapStateToProps)(ContactsList);

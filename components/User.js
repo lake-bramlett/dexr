@@ -12,7 +12,7 @@ function User() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#333',
+    backgroundColor: '#ddd',
     alignItems: 'center',
     justifyContent: 'center',
   },
