@@ -17,7 +17,7 @@ class App extends Component {
   constructor(props) {
     super(props);
   }
-  
+
   render() {
 
     return (
@@ -33,8 +33,8 @@ export default App;
 
 
 const TabNavigator = createBottomTabNavigator({
-  User: User,
   Contacts: ContactsList,
+  User: User,
 })
 
 const AppContainer = createAppContainer(TabNavigator);
