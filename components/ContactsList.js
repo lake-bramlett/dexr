@@ -7,11 +7,13 @@ class ContactsList extends Component {
     super(props);
   }
 
+
   render() {
+    console.log('contactsList props', this.props);
     return (
       <View style={styles.container}>
         <Text>Contacts List</Text>
-        <Text>{this.props.contacts}</Text>
+        <Text>{this.props.contacts[0].name}</Text>
       </View>
     );
   }
@@ -27,7 +29,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  return { contacts: state.contacts };
+  console.log('mapStateToProps', state)
+  return { contacts: state.contactsReducer.contacts };
 };
 
 export default connect(mapStateToProps)(ContactsList);
