@@ -10,14 +10,19 @@ class ContactsList extends Component {
     super(props);
   }
 
+  static navigationOptions = {
+    title: 'Contacts',
+  };
+
+
   render() {
     console.log('contactsList props', this.props);
     return (
-      <View style={styles.container}>
+      <View style={styles.contactList}>
           <FlatList
             style={styles.flatList}
             data={this.props.contacts}
-            renderItem={({ item }) => <Text key={v4()} onPress={ ()=> Linking.openURL('https://google.com') } style={styles.contactPreview}>{item.name}</Text>}
+            renderItem={({ item }) => <Text key={v4()} onPress={ () => this.props.navigation.navigate('Contact', item ) } style={styles.contactPreview}>{item.name}</Text>}
           />
           <View style={styles.addContact}>
             <Button title="Add Contact"></Button>
@@ -28,12 +33,11 @@ class ContactsList extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  contactList: {
     flex: 1,
     backgroundColor: '#ddd',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 30,
     paddingTop: 20,
   },
   flatList: {
@@ -44,11 +48,11 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   addContact: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 36,
     alignSelf: 'stretch',
     backgroundColor: '#333',
-    color: '#fff',
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
   },
   contactPreview: {
     alignSelf: 'stretch',
@@ -66,8 +70,4 @@ const mapStateToProps = state => {
   return { contacts: state.contactsReducer.contacts };
 };
 
-const contactsNavigator = StackNavigator({
- Contact: {
-    screen: props=> <ContactDetail {...props}>
- }})
 export default connect(mapStateToProps)(ContactsList);

@@ -3,14 +3,14 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 function User() {
   return (
-    <View style={styles.container}>
+    <View style={styles.user}>
       <Text>User</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  user: {
     flex: 1,
     backgroundColor: '#ddd',
     alignItems: 'center',

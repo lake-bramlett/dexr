@@ -8,8 +8,8 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Contacts from 'react-native-contacts';
 import User from './components/User';
 import ContactsList from './components/ContactsList';
+import ContactDetail from './components/ContactDetail';
 import MainScreen from './screens/MainScreen';
-
 import store from './store'
 
 
@@ -30,17 +30,28 @@ class App extends Component {
 
 export default App;
 
+//stack and tab navigation
 
+const ContactStack = createStackNavigator({
+  Contacts: ContactsList,
+  Contact: ContactDetail
+})
+
+const UserStack = createStackNavigator({
+  User: User,
+})
 
 const TabNavigator = createBottomTabNavigator({
-  Contacts: ContactsList,
-  User: User,
+  Contacts: ContactStack,
+  User: UserStack,
 })
 
 const AppContainer = createAppContainer(TabNavigator);
 
+//styles
+
 const styles = StyleSheet.create({
-  container: {
+  app: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
