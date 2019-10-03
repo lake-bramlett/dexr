@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, Image, Text, View, Button, TouchableHighlight, TextInput } from 'react-native';
 import { connect } from "react-redux";
-import editUser from './../actions/user_actions.js';
+import { editUser } from './../actions/user_actions.js';
 
 class EditUserInfo extends Component {
+
   constructor(props) {
     super(props);
-    console.log('edit user props', props);
     this.state = {
       name: "",
       number: 0,
@@ -19,8 +19,8 @@ class EditUserInfo extends Component {
     title: 'Edit Info',
   };
 
-
   render() {
+    console.log('edit user state:', this.state);
     const { navigation } = this.props;
     return (
       <View>
@@ -32,7 +32,8 @@ class EditUserInfo extends Component {
         <TextInput style={styles.textInput} placeholder={navigation.getParam('email')} onChangeText={(email) => this.setState({email})}></TextInput>
         <Text>Company</Text>
         <TextInput style={styles.textInput} placeholder={navigation.getParam('company')} onChangeText={(company) => this.setState({company})}></TextInput>
-        <Button title="Submit"></Button>
+        <Button title="Submit" onPress={ () => this.props.editUser(this.state) }></Button>
+        <Button title="Return Home" onPress={ () => this.props.navigation.navigate('User') }></Button>
       </View>
     )
   }
@@ -50,5 +51,11 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapDispatchToProps = dispatch => {
+  return {
+    editUser: user => dispatch(editUser(user))
+  }
+}
 
-export default connect(null, editUser)(EditUserInfo);
+
+export default connect(null, mapDispatchToProps)(EditUserInfo);
