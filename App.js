@@ -7,9 +7,10 @@ import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 import Contacts from 'react-native-contacts';
 import User from './components/User';
+import UserDetail from './components/UserDetail';
 import ContactsList from './components/ContactsList';
 import ContactDetail from './components/ContactDetail';
-import MainScreen from './screens/MainScreen';
+import NewContact from './components/NewContact';
 import store from './store'
 
 
@@ -34,16 +35,18 @@ export default App;
 
 const ContactStack = createStackNavigator({
   Contacts: ContactsList,
-  Contact: ContactDetail
+  Contact: ContactDetail,
+  AddContact: NewContact,
 })
 
 const UserStack = createStackNavigator({
   User: User,
+  UserDetail: UserDetail,
 })
 
 const TabNavigator = createBottomTabNavigator({
-  Contacts: ContactStack,
   User: UserStack,
+  Contacts: ContactStack,
 })
 
 const AppContainer = createAppContainer(TabNavigator);

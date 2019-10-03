@@ -25,7 +25,7 @@ class ContactsList extends Component {
             renderItem={({ item }) => <Text key={v4()} onPress={ () => this.props.navigation.navigate('Contact', item ) } style={styles.contactPreview}>{item.name}</Text>}
           />
           <View style={styles.addContact}>
-            <Button title="Add Contact"></Button>
+            <Button title="Add Contact" onPress={ () => this.props.navigation.navigate('AddContact')}></Button>
           </View>
         </View>
     );
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   console.log('mapStateToProps', state)
-  return { contacts: state.contactsReducer.contacts };
+  return { contacts: state.contacts.contacts };
 };
 
 export default connect(mapStateToProps)(ContactsList);
