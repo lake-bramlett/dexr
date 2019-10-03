@@ -1,3 +1,5 @@
+import { AsyncStorage } from 'react-native';
+
 const initialState = {
   user: {
     name: "lake b",
@@ -11,12 +13,14 @@ console.log("initialState", initialState);
 
 
 const userReducer = (state = initialState, action) => {
+  let newState;
   switch (action.type) {
     case "EDIT_USER":
+      newState = JSON.parse(JSON.stringify(state))
       let editedUser = action.user;
-      state.user = editedUser;
-      console.log('new user state', state);
-      return state;
+      newState.user = editedUser;
+      AsyncStorage.setItem('user', 'editedUser')
+      return newState;
     default:
       return state;
   }

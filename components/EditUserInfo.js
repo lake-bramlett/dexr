@@ -19,6 +19,12 @@ class EditUserInfo extends Component {
     title: 'Edit Info',
   };
 
+  handleEditUser (state, path) {
+    this.props.editUser(state);
+    this.props.navigation.navigate(path)
+    console.log('new new user state:',this.state);
+  }
+
   render() {
     console.log('edit user state:', this.state);
     const { navigation } = this.props;
@@ -32,8 +38,7 @@ class EditUserInfo extends Component {
         <TextInput style={styles.textInput} placeholder={navigation.getParam('email')} onChangeText={(email) => this.setState({email})}></TextInput>
         <Text>Company</Text>
         <TextInput style={styles.textInput} placeholder={navigation.getParam('company')} onChangeText={(company) => this.setState({company})}></TextInput>
-        <Button title="Submit" onPress={ () => this.props.editUser(this.state) }></Button>
-        <Button title="Return Home" onPress={ () => this.props.navigation.navigate('User') }></Button>
+        <Button title="Submit" onPress={ () => this.handleEditUser(this.state, 'User') }></Button>
       </View>
     )
   }

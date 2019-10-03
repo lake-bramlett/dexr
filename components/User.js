@@ -10,7 +10,7 @@ class User extends Component {
 
   static navigationOptions = ({ navigation }) => {
     const { params } = navigation.state;
-    const th = params ? params.screenTitle: 'My Card';
+    const th = params ? params.screenTitle : 'My Card';
     console.log('here ghe thign:',th);
     return {
       title: th,
