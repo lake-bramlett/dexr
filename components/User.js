@@ -19,7 +19,7 @@ class User extends Component {
 
   componentDidMount() {
     console.log('workd');
-    this.props.navigation.setParams({ screenTitle: this.props.user[0].name });
+    this.props.navigation.setParams({ screenTitle: this.props.user.name });
   }
 
   render() {
@@ -29,10 +29,10 @@ class User extends Component {
         <TouchableHighlight style={styles.cardContainer} onPress={ () => this.props.navigation.navigate('UserDetail') }>
           <Image style={styles.card} source={card} />
         </TouchableHighlight>
-        <Text>{this.props.user[0].name}</Text>
-        <Text>{this.props.user[0].number}</Text>
-        <Text>{this.props.user[0].email}</Text>
-        <Button title="Edit Info"></Button>
+        <Text>{this.props.user.name}</Text>
+        <Text>{this.props.user.number}</Text>
+        <Text>{this.props.user.email}</Text>
+        <Button title="Edit Info" onPress={ () => this.props.navigation.navigate('EditInfo') }></Button>
       </View>
     );
   }

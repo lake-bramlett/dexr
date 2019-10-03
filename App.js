@@ -8,6 +8,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Contacts from 'react-native-contacts';
 import User from './components/User';
 import UserDetail from './components/UserDetail';
+import EditUserInfo from './components/EditUserInfo';
 import ContactsList from './components/ContactsList';
 import ContactDetail from './components/ContactDetail';
 import NewContact from './components/NewContact';
@@ -42,6 +43,7 @@ const ContactStack = createStackNavigator({
 const UserStack = createStackNavigator({
   User: User,
   UserDetail: UserDetail,
+  EditInfo: EditUserInfo,
 })
 
 const TabNavigator = createBottomTabNavigator({
