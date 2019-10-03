@@ -1,16 +1,24 @@
 import { AsyncStorage } from 'react-native';
 
-const initialState = {
-  user: {
-    name: "lake b",
-    number: 5555555555,
-    email: "lakeb@aol.com",
-    company: "lake corp"
-  }
+let name;
+
+const showData = async () => {
+  let localInfo = await AsyncStorage.getItem('user');
+  let user = JSON.parse(localInfo);
+  name = JSON.stringify(user.name);
+  console.log('name', name);
 }
 
-console.log("initialState", initialState);
+showData()
 
+const initialState = {
+    user: {
+      name: "lake",
+      number: 5555555555,
+      email: "lakeb@aol.com",
+      company: "lake corp"
+    }
+}
 
 const userReducer = (state = initialState, action) => {
   let newState;
@@ -19,7 +27,7 @@ const userReducer = (state = initialState, action) => {
       newState = JSON.parse(JSON.stringify(state))
       let editedUser = action.user;
       newState.user = editedUser;
-      AsyncStorage.setItem('user', 'editedUser')
+      AsyncStorage.setItem('user', JSON.stringify(editedUser))
       return newState;
     default:
       return state;

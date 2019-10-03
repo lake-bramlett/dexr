@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, Text, View, Button, TouchableHighlight } from 'react-native';
+import { StyleSheet, Image, Text, View, Button, TouchableHighlight, AsyncStorage } from 'react-native';
 import { connect } from "react-redux";
 import card from './../assets/cards/lake_logo_01.png';
 
@@ -18,8 +18,14 @@ class User extends Component {
   }
 
   componentDidMount() {
-    console.log('workd');
     this.props.navigation.setParams({ screenTitle: this.props.user.name });
+
+  }
+
+  showData = async () => {
+    let localInfo = await AsyncStorage.getItem('user');
+    let user = JSON.parse(localInfo);
+    alert(JSON.stringify(user.name));
   }
 
   render() {
@@ -33,6 +39,7 @@ class User extends Component {
         <Text>{this.props.user.number}</Text>
         <Text>{this.props.user.email}</Text>
         <Button title="Edit Info" onPress={ () => this.props.navigation.navigate('EditInfo') }></Button>
+        <Button title="Show Data" onPress={ () => this.showData() }></Button>
       </View>
     );
   }
@@ -61,4 +68,10 @@ const mapStateToProps = state => {
   return { user: state.user.user };
 };
 
-export default connect(mapStateToProps)(User);
+const mapDispatchToProps = dispatch => {
+  return {
+    initializeUser: user => dispatch(initializeUser(user))
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(User);
