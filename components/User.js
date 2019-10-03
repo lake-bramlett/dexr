@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Image, Text, View, Button, TouchableHighlight, AsyncStorage } from 'react-native';
 import { connect } from "react-redux";
+import { initializeUser } from './../actions/user_actions.js'
 import card from './../assets/cards/lake_logo_01.png';
 
 class User extends Component {
@@ -17,9 +18,9 @@ class User extends Component {
     }
   }
 
+
   componentDidMount() {
     this.props.navigation.setParams({ screenTitle: this.props.user.name });
-
   }
 
   showData = async () => {

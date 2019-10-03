@@ -4,3 +4,10 @@ export const editUser = (user) => {
     user: user
   };
 };
+
+export const initializeUser = (user) => {
+  return {
+    type: "INITIALIZE_USER",
+    user: user
+  };
+};
